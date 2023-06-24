@@ -1,0 +1,145 @@
+# English translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-06-19 21:35+0300\n"
+"PO-Revision-Date: 2023-06-19 21:35+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: keyboards/client_keyboards.py:32
+msgid "HI! I will take your order :) *I am a demo bot*"
+msgstr ""
+
+#: keyboards/client_keyboards.py:63
+msgid ""
+"If you stuck, the bot doesn't work or something is wrong, please write to"
+" a creator: {} or to our mail: {}"
+msgstr ""
+
+#: keyboards/client_keyboards.py:75
+msgid "Hi, sweetie 💋💖{}"
+msgstr ""
+
+#: keyboards/client_keyboards.py:96
+msgid "Hello, please select the bot language"
+msgstr ""
+
+#: keyboards/client_keyboards.py:110
+msgid ""
+"{}\n"
+"Component: {}\n"
+"Weight: {} gram\n"
+"Cost: {}{} UAH"
+msgstr ""
+
+#: keyboards/client_keyboards.py:144
+msgid "✏Change"
+msgstr ""
+
+#: keyboards/client_keyboards.py:149
+msgid "✅Checkout"
+msgstr ""
+
+#: keyboards/client_keyboards.py:158 keyboards/client_keyboards.py:185
+#: keyboards/client_keyboards.py:217 keyboards/client_keyboards.py:256
+msgid "↪Back"
+msgstr ""
+
+#: keyboards/client_keyboards.py:166
+msgid "Your order: "
+msgstr ""
+
+#: keyboards/client_keyboards.py:167
+msgid ""
+"\n"
+"\n"
+"{}({})\n"
+"{}pcs., {}UAH"
+msgstr ""
+
+#: keyboards/client_keyboards.py:168
+msgid "empty"
+msgstr ""
+
+#: keyboards/client_keyboards.py:190
+msgid "Your basket is empty"
+msgstr ""
+
+#: keyboards/client_keyboards.py:211
+msgid ""
+"{}({})\n"
+"{}pcs., {}UAH, {}"
+msgstr ""
+
+#: keyboards/client_keyboards.py:225
+msgid ""
+"Don't worry. It`s a test payment. Use: \n"
+"Card number: 4242 4242 4242 4242 \n"
+"Expiration data: 04/24 \n"
+"CVC code: 242"
+msgstr ""
+
+#: keyboards/client_keyboards.py:240
+msgid ""
+"\n"
+"\n"
+"{}({})\n"
+"{}pcs."
+msgstr ""
+
+#: keyboards/client_keyboards.py:244
+msgid "PAYMENT"
+msgstr ""
+
+#: keyboards/client_keyboards.py:244
+msgid "YOUR ORDER"
+msgstr ""
+
+#: keyboards/client_keyboards.py:246
+msgid "Your basket is empty!"
+msgstr ""
+
+#: keyboards/client_keyboards.py:254
+msgid "Available options:"
+msgstr ""
+
+#: keyboards/client_keyboards.py:264
+msgid "💢Add to basket"
+msgstr ""
+
+#: keyboards/client_keyboards.py:269
+msgid "❌Delete"
+msgstr ""
+
+#: keyboards/client_keyboards.py:277 keyboards/client_keyboards.py:281
+msgid "🛒Basket"
+msgstr ""
+
+#: keyboards/client_keyboards.py:285
+msgid "❓Help"
+msgstr ""
+
+#: keyboards/client_keyboards.py:289
+msgid "📃About"
+msgstr ""
+
+#: keyboards/client_keyboards.py:293
+msgid "🌐Language"
+msgstr ""
+
+#: keyboards/client_keyboards.py:297
+msgid "🛎Menu"
+msgstr ""
+

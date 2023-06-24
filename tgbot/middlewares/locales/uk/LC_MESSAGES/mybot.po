@@ -1,0 +1,165 @@
+# Ukrainian translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-06-19 21:35+0300\n"
+"PO-Revision-Date: 2023-06-19 21:36+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uk\n"
+"Language-Team: uk <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: keyboards/client_keyboards.py:32
+msgid "HI! I will take your order :) *I am a demo bot*"
+msgstr "Привіт! Я прийму ваше замовлення :) *Я демо-бот*"
+
+#: keyboards/client_keyboards.py:63
+msgid ""
+"If you stuck, the bot doesn't work or something is wrong, please write to"
+" a creator: {} or to our mail: {}"
+msgstr "Якщо ви застрягли, бот не працює або щось не так, будь ласка, напишіть "
+"автору: {} або на пошту {}"
+
+#: keyboards/client_keyboards.py:75
+msgid "Hi, sweetie 💋💖{}"
+msgstr "Привіт, любий 💋💖{}"
+
+#: keyboards/client_keyboards.py:96
+msgid "Hello, please select the bot language"
+msgstr "Привіт, виберіть, будь ласка, мову бота"
+
+#: keyboards/client_keyboards.py:110
+msgid ""
+"{}\n"
+"Component: {}\n"
+"Weight: {} gram\n"
+"Cost: {}{} UAH"
+msgstr ""
+"{}\n"
+"Склад продукту: {}\n"
+"Вага: {} грам\n"
+"Ціна: {}{} UAH"
+
+#: keyboards/client_keyboards.py:144
+msgid "✏Change"
+msgstr "✏Змінити"
+
+#: keyboards/client_keyboards.py:149
+msgid "✅Checkout"
+msgstr "✅Замовити"
+
+#: keyboards/client_keyboards.py:158 keyboards/client_keyboards.py:185
+#: keyboards/client_keyboards.py:217 keyboards/client_keyboards.py:256
+msgid "↪Back"
+msgstr "↪Повернутися назад"
+
+#: keyboards/client_keyboards.py:166
+msgid "Your order: "
+msgstr "Ваше замовлення: "
+
+#: keyboards/client_keyboards.py:167
+msgid ""
+"\n"
+"\n"
+"{}({})\n"
+"{}pcs., {}UAH"
+msgstr ""
+"\n"
+"\n"
+"{}({})\n"
+"{}шт., {}UAH"
+
+#: keyboards/client_keyboards.py:168
+msgid "empty"
+msgstr "Порожньо"
+
+#: keyboards/client_keyboards.py:190
+msgid "Your basket is empty"
+msgstr "Ваш кошик порожній"
+
+#: keyboards/client_keyboards.py:211
+msgid ""
+"{}({})\n"
+"{}pcs., {}UAH, {}"
+msgstr ""
+"{}({})\n"
+"{}шт., {}UAH, {}"
+
+#: keyboards/client_keyboards.py:225
+msgid ""
+"Don't worry. It`s a test payment. Use: \n"
+"Card number: 4242 4242 4242 4242 \n"
+"Expiration data: 04/24 \n"
+"CVC code: 242"
+msgstr ""
+"Не хвилюйся. Це тестовий платіж. Користуйся:\n"
+"Номер картки: 4242 4242 4242 4242 4242\n"
+"Термін дії: 04/24\n"
+"CVC код: 242"
+
+#: keyboards/client_keyboards.py:240
+msgid ""
+"\n"
+"\n"
+"{}({})\n"
+"{}pcs."
+msgstr ""
+"\n"
+"\n"
+"{}({})\n"
+"{}шт."
+
+#: keyboards/client_keyboards.py:244
+msgid "PAYMENT"
+msgstr "ОПЛАТА"
+
+#: keyboards/client_keyboards.py:244
+msgid "YOUR ORDER"
+msgstr "ВАШЕ ЗАМОВЛЕННЯ"
+
+#: keyboards/client_keyboards.py:246
+msgid "Your basket is empty!"
+msgstr "Ваш кошик порожній!"
+
+#: keyboards/client_keyboards.py:254
+msgid "Available options:"
+msgstr "Доступні варіанти:"
+
+#: keyboards/client_keyboards.py:264
+msgid "💢Add to basket"
+msgstr "💢Додати в кошик"
+
+#: keyboards/client_keyboards.py:269
+msgid "❌Delete"
+msgstr "❌Видалити з кошика"
+
+#: keyboards/client_keyboards.py:277 keyboards/client_keyboards.py:281
+msgid "🛒Basket"
+msgstr "🛒Кошик"
+
+#: keyboards/client_keyboards.py:285
+msgid "❓Help"
+msgstr "❓Допомога"
+
+#: keyboards/client_keyboards.py:289
+msgid "📃About"
+msgstr "📃Про нас"
+
+#: keyboards/client_keyboards.py:293
+msgid "🌐Language"
+msgstr "🌐Мова"
+
+#: keyboards/client_keyboards.py:297
+msgid "🛎Menu"
+msgstr "🛎Меню"
+

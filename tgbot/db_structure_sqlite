@@ -1,0 +1,177 @@
+--
+-- File generated with SQLiteStudio v3.4.3 on Ср Чер 21 13:40:25 2023
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: cart
+CREATE TABLE IF NOT EXISTS cart (user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, amount INTEGER DEFAULT (1) CHECK (amount > 0), UNIQUE (user_id, product_id) ON CONFLICT ROLLBACK);
+
+-- Table: categories
+CREATE TABLE IF NOT EXISTS categories (category_id INTEGER PRIMARY KEY AUTOINCREMENT, category_name TEXT UNIQUE NOT NULL, category_emoji BLOB);
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (1, 'Rolls', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (2, 'Sushi', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (3, 'Sets', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (4, 'Sashimi', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (5, 'Salads', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (6, 'Dessert', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (7, 'Futomaki', '??');
+INSERT INTO categories (category_id, category_name, category_emoji) VALUES (8, 'Bowl', '??');
+
+-- Table: category_translations
+CREATE TABLE IF NOT EXISTS category_translations (category_id INTEGER REFERENCES categories (category_id), language_id TEXT REFERENCES languages (language_id) ON DELETE CASCADE ON UPDATE CASCADE, category_name TEXT, PRIMARY KEY (category_id, language_id)) WITHOUT ROWID;
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (1, 'en', 'Rolls');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (1, 'uk', 'Роли');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (2, 'en', 'Sushi');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (2, 'uk', 'Суші');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (3, 'en', 'Sets');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (3, 'uk', 'Сети');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (4, 'en', 'Sashimi');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (4, 'uk', 'Сашимі');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (5, 'en', 'Salads');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (5, 'uk', 'Салати');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (6, 'en', 'Dessert');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (6, 'uk', 'Десерти');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (7, 'en', 'Futomaki');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (7, 'uk', 'Футомакі');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (8, 'en', 'Bowl');
+INSERT INTO category_translations (category_id, language_id, category_name) VALUES (8, 'uk', 'Боули');
+
+-- Table: languages
+CREATE TABLE IF NOT EXISTS languages (language_id TEXT PRIMARY KEY, language_name TEXT NOT NULL);
+INSERT INTO languages (language_id, language_name) VALUES ('uk', 'Ukraine');
+INSERT INTO languages (language_id, language_name) VALUES ('en', 'English');
+
+-- Table: product_translations
+CREATE TABLE IF NOT EXISTS product_translations (product_id INTEGER REFERENCES products (product_id) ON DELETE CASCADE ON UPDATE CASCADE, language_id TEXT REFERENCES languages (language_id) ON DELETE CASCADE ON UPDATE CASCADE, product_name TEXT, composition TEXT, PRIMARY KEY (product_id ASC, language_id ASC) ON CONFLICT IGNORE) WITHOUT ROWID;
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (1, 'en', 'Mango roll', 'Mango Chili sauce suites, Chilled salmon, Philadelphia cheese, Rice, Nori, *Scorched by a burner');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (1, 'uk', 'Рол Манго', 'Манго, Соус світ чилі, Лосось охолоджений, Сир Філадельфія, Рис, Норі, *Обпалений пальником');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (2, 'en', 'Roll of Hawaii', 'Mango, Teriyaki sauce, Chili sauce suites, Chilled salmon, Tiger shrimp, Caviar, Avocado, Philadelphia cheese, Fried onion, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (2, 'uk', 'Рол Гаваї', 'Манго, Соус теріякі, Соус світ чилі, Лосось охолоджений, Креветка тигрова, Ікра , Авокадо, Сир Філадельфія, Цибуля у фритюрі, Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (3, 'en', 'Roll Exotic', 'Mango, Chilli, Tiger shrimp, Unagi sauce, Eel, Avocado, Philadelphia cheese, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (3, 'uk', 'Рол Екзотик', 'Пюре манго, Перець чилі, Креветка тигрова, Соус унагі, Вугор, Авокадо, Сир Філадельфія, Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (4, 'en', 'Roll in avocado', 'Avocado, Chilled salmon, Caviar, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (4, 'uk', 'Рол з авокадо', 'Авокадо, Лосось охолоджений, Ікра, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (5, 'en', 'Role of Atlantis', 'Teriyaki sauce, Spicy sauce, Chilled salmon, Tiger shrimp, Green onion, Tuna, Cucumber, Avocado, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (5, 'uk', 'Рол Атлантида', 'Соус теріякі, Соус спайсі, Лосось охолоджений, Креветка тигрова, Цибуля зелена, Тунець, Огірок, Авокадо, Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (6, 'en', 'Roll of Higata', 'Salad Chuka, Spicy sauce, Chilled salmon, Chilli, Green onion, Tuna, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (6, 'uk', 'Рол Хігата', 'Салат Чука, Соус спайсі, Лосось охолоджений, Перець чилі, Цибуля зелена, Тунець, Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (7, 'en', 'Spicy roll with tuna', 'Spicy sauce, Tuna, Cucumber, Philadelphia cheese, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (7, 'uk', 'Спайсі рол з тунцем', NULL);
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (8, 'en', 'Gunkan with salmon', 'Chilled salmon, Japanese mayonnaise, Caviar, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (8, 'uk', 'Гункан з лососем', 'Лосось охолоджений, Майонез японський, Ікра , Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (9, 'en', 'Gunkan with tuna', 'Japanese mayonnaise, Tuna, Caviar, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (9, 'uk', 'Гункан з тунцем', 'Майонез японський, Тунець, Ікра , Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (10, 'en', 'Gunkan with eel', 'Roasted eel, Japanese mayonnaise, Caviar, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (10, 'uk', 'Гункан з вугром', 'Вугор обсмажений, Майонез японський, Ікра , Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (11, 'en', 'Gunkan with cocktail shrimp', 'Shrimp cocktail, Japanese mayonnaise, Caviar, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (11, 'uk', 'Гункан з коктейльною креветкою', 'Креветка коктейльна, Майонез японський, Ікра , Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (12, 'en', 'Gunkan with red caviar', 'Red caviar, Cucumber, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (12, 'uk', 'Гункан з червоною ікрою', 'Ікра червона, Огірок, Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (13, 'en', 'Gunkan with scallop', 'Scallop, Japanese mayonnaise, Caviar, Rice, Nori');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (13, 'uk', 'Гункан з гребінцем', 'Гребінець, Майонез японський, Ікра , Рис, Норі');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (14, 'en', 'Salmon set', 'Roll Philadelphia double cheese, Roll Philadelphia, Sushi cake with salmon, Gunkan salmon (6 pcs.)');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (14, 'uk', 'Сальмон сет ', 'Рол Філадельфія double cheese, Рол Філадельфія, Суші-кейк з лососем, Гункан с лососем (6 шт.)');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (15, 'en', 'Set for a big company', 'Roll Philadelphia in sesame, Roll Philadelphia, Gunkan with shrimp cocktail (2 pcs.), Gunkan tuna (2 pcs.), Gunkan salmon (2 pcs.), Gunkan with eel (2 pcs.), Maki Roll with Cucumber, California roll with tuna in caviar, Roll in eel, Spicy roll with tuna, Roll with tiger shrimp');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (15, 'uk', 'Сет для великої компанії', 'Рол Філадельфія в кунжуті, Рол Філадельфія, Гункан з коктейльною креветкою (2шт.), Гункан з тунцем (2 шт.), Гункан з лососем (2 шт.), Гункан з вугром (2 шт.), Маки рол з огірком, Рол Каліфорнія в ікрі з тунцем, Рол в вугрі, Рол спайсі з тунцем, Рол з тигровою креветкою');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (16, 'en', 'Set of baked rolls', 'Baked roll with salmon, Baked roll with eel, Baked roll of red velvet');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (16, 'uk', 'Сет із запечених ролів', 'Запечений рол з лососем, Запечений рол з вугром, Запечений рол Червоний бархат');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (17, 'en', 'Set ONE LOVE', 'Gunkan with eel (2 pcs.), Maki roll with tuna, California roll with eel in sesame, Roll Philadelphia double cheese, Gunkan with shrimp cocktail (2 pcs.), Gunkan salmon (2 pcs.)');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (17, 'uk', 'Сет Ван Лав', 'Гункан з вугром (2 шт.), Маки рол з тунцем, Рол Каліфорнія з вугром в кунжуті, Рол Філадельфія double cheese, Гункан з коктейльною креветкою (2шт.), Гункан з лососем (2 шт.)');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (18, 'en', 'Solo set', 'Gunkan tuna (2 pcs.), Gunkan with eel (2 pcs.), Nigiri with tiger shrimp (2pcs.), Roll Philadelphia double cheese');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (18, 'uk', 'Соло сет', 'Гункан з тунцем (2 шт.), Гункан з вугром (2 шт.), Нігірі з тигровою креветкою (2шт.), Рол Філадельфія double cheese');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (19, 'en', 'Sashimi with eel', 'Unagi sauce, Cucumber, Seaweed Chuka, Sesame seed, Roasted eel');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (19, 'uk', 'Сашимі з вугром', 'Соус унагі, Огірок, Водорості чука, Кунжутне насіння, Вугор обсмажений');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (20, 'en', 'Sashimi with salmon', 'Chilled salmon, Cucumber, Seaweed Chuka');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (20, 'uk', 'Сашимі з лососем', 'Лосось охолоджений, Огірок, Водорості чука');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (21, 'en', 'Sashimi with tiger shrimp', 'Tiger shrimp, Cucumber, Seaweed Chuka');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (21, 'uk', 'Сашимі з тигровою креветкою', 'Креветка тигрова, Огірок, Водорості чука');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (22, 'en', 'Sashimi with tuna', 'Tuna, Cucumber, Seaweed Chuka');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (22, 'uk', 'Сашимі з тунцем', 'Тунець, Огірок, Водорості чука');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (23, 'en', 'Tartar fresh', 'Cucumber, Avocado, Chilled salmon, Japanese mayonnaise, Green onion, Caviar');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (23, 'uk', 'Тартар Фреш', 'Огірок, Авокадо, Лосось охолоджений, Майонез японський, Цибуля зелена, Ікра ');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (24, 'en', 'Tuna tartar', 'Oyster sauce, Tuna, Caviar from marine algae Laminaria');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (24, 'uk', 'Тартар з тунця', 'Устричний соус, Тунець, Ікра з морських водоростей ламінарії');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (25, 'en', 'Chuka salad', 'Sesame seed, Peanut sauce, Seaweed Chuka');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (25, 'uk', 'Салат Чука', 'Кунжутне насіння, Горіховий соус, Водорості чука');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (26, 'en', 'Salmon tartare', 'Ground pepper, Salt, Chilled salmon, Olive oil, Lemon');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (26, 'uk', 'Тартар з лосося', 'Перець мелений, Сіль, Лосось охолоджений, Олія оливкова, Лимон');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (27, 'en', 'Tartar mix', 'Tuna, Oyster sauce, Avocado, Chilled salmon, Cherry tomatoes, Olive oil, Mustard french, Lemon, Salt, Honey');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (27, 'uk', 'Тартар мікс', 'Тунець, Устричний соус, Авокадо, Лосось охолоджений, Помідори чері, Олія оливкова, Гірчиця французька, Лимон, Сіль, Мед');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (28, 'en', 'Roll Choco', 'Pear, Philadelphia cheese, Pistachio, Peach, Banana, Cocoa pancake');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (28, 'uk', 'Рол Шоко', 'Груша, Сир Філадельфія, Фісташка, Персик, Банан, Млинець з какао');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (29, 'en', 'Roll Sweet mango', 'An Apple, Philadelphia cheese, White pancake, Almond, Kiwi, Mango');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (29, 'uk', 'Рол Світ манго', 'Яблуко, Сир Філадельфія, Білий млинець, Мигдаль, Ківі, Манго');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (30, 'en', 'Roll Nutella', 'Cashew, Philadelphia cheese, Nutella, Banana, Kiwi, Cocoa pancake, Mango');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (30, 'uk', 'Рол Нутелла', 'Горіх кеш''ю, Сир Філадельфія, Нутелла, Банан, Ківі, Млинець з какао, Манго');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (31, 'en', 'Roll Raspberry Crash', 'An Apple, Philadelphia cheese, Raspberries, White pancake, Pear, Mango');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (31, 'uk', 'Рол Малиновий краш', 'Яблуко, Сир Філадельфія, Малина сублімована, Пюре манго, Білий млинець, Груша');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (32, 'en', 'Futomaki tuna', 'Fried onion, Poke sauce, Tuna, Caviar, Iceberg lettuce leaves, Cucumber, Avocado, Philadelphia cheese, Rice, Nori, *Scorched by a burner');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (32, 'uk', 'Футомакі з тунцем', 'Цибуля у фритюрі, Соус поке, Тунець, Ікра , Листя салату айсберг, Огірок, Авокадо, Сир Філадельфія, Рис, Норі, *Обпалений пальником');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (33, 'en', 'Futomaki with salmon', 'Fried onion, Poke sauce, Chilled salmon, Caviar, Iceberg lettuce leaves, Cucumber, Avocado, Philadelphia cheese, Rice, Nori, *Scorched by a burner');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (33, 'uk', 'Футомакі з лососем', 'Цибуля у фритюрі, Соус поке, Лосось охолоджений, Ікра , Листя салату айсберг, Огірок, Авокадо, Сир Філадельфія, Рис, Норі, *Обпалений пальником');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (34, 'en', 'Futomaki with scallop', 'Chili sauce sharp shriracha, Scallop, Iceberg lettuce leaves, Cucumber, Avocado, Philadelphia cheese, Rice, Nori, *Scorched by a burner');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (34, 'uk', 'Футомакі з гребінцем', 'Соус чилі шрірача гострий, Гребінець, Листя салату айсберг, Огірок, Авокадо, Сир Філадельфія, Рис, Норі, *Обпалений пальником');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (35, 'en', 'Bowl with eel', 'Philadelphia cheese, Poke sauce, Mango, Sesame seed, Cashew, Bell pepper, Unagi sauce, Eel, Edamame beans, Avocado, Key lime, Rice');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (35, 'uk', 'Боул з вугром', 'Сир Філадельфія, Соус поке, Манго, Кунжутне насіння, Горіх кеш''ю, Перець болгарський, Соус унагі, Вугор, Боби Едамаме, Авокадо, Лайм, Рис');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (36, 'en', 'Bowl with shrimp', 'Philadelphia cheese, Poke sauce, Mango, Sesame seed, Cashew, Tiger shrimp, Bell pepper, Unagi sauce, Edamame beans, Avocado, Key lime, Rice');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (36, 'uk', 'Боул з креветкою', 'Сир Філадельфія, Соус поке, Манго, Кунжутне насіння, Горіх кеш''ю, Креветка тигрова, Перець болгарський, Соус унагі, Боби Едамаме, Авокадо, Лайм, Рис');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (37, 'en', 'Bowl with salmon', 'Philadelphia cheese, Mango, Oyster sauce, Seaweed Chuka, Sesame seed, Cherry tomatoes, Cashew, Salmon, Key lime, Avocado, Poke sauce, Rice');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (37, 'uk', 'Боул з лососем', 'Сир Філадельфія, Манго, Устричний соус, Водорості чука, Кунжутне насіння, Помідори чері, Горіх кеш''ю, Лосось, Лайм, Авокадо, Соус поке, Рис');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (38, 'en', 'Bowl with tuna', 'Philadelphia cheese, Mango, Oyster sauce, Seaweed Chuka, Sesame seed, Cherry tomatoes, Cashew, Tuna, Key lime, Avocado, Poke sauce, Rice');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (38, 'uk', 'Боул з тунцем', 'Сир Філадельфія, Манго, Устричний соус, Водорості чука, Кунжутне насіння, Помідори чері, Горіх кеш''ю, Тунець, Лайм, Авокадо, Соус поке, Рис');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (39, 'en', 'Vegetable bowl', 'Avocado, Key lime, Poke sauce, Mango, Seaweed Chuka, Sesame seed, Cherry tomatoes, Cashew, Bell pepper, Edamame beans, Rice');
+INSERT INTO product_translations (product_id, language_id, product_name, composition) VALUES (39, 'uk', 'Боул овочевий', 'Авокадо, Лайм, Соус поке, Манго, Водорості чука, Кунжутне насіння, Помідори чері, Горіх кеш''ю, Перець болгарський, Боби Едамаме, Рис');
+
+-- Table: products
+CREATE TABLE IF NOT EXISTS products (product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name TEXT NOT NULL UNIQUE, category_id INTEGER REFERENCES categories (category_id) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL, composition TEXT NOT NULL UNIQUE, gram INTEGER NOT NULL, price INTEGER NOT NULL, photos TEXT NOT NULL UNIQUE);
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (1, 'Mango roll', 1, 'Mango Chili sauce suites, Chilled salmon, Philadelphia cheese, Rice, Nori, *Scorched by a burner', 330, 405, 'https://live.staticflickr.com/65535/52700467740_1276de3ef8_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (2, 'Roll of Hawaii', 1, 'Mango, Teriyaki sauce, Chili sauce suites, Chilled salmon, Tiger shrimp, Caviar, Avocado, Philadelphia cheese, Fried onion, Rice, Nori', 320, 455, 'https://live.staticflickr.com/65535/52700310474_8affb40305_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (3, 'Roll Exotic', 1, 'Mango, Chilli, Tiger shrimp, Unagi sauce, Eel, Avocado, Philadelphia cheese, Rice, Nori', 290, 455, 'https://live.staticflickr.com/65535/52699531397_bda1a0d928_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (4, 'Roll in avocado', 1, 'Avocado, Chilled salmon, Caviar, Nori', 150, 325, 'https://live.staticflickr.com/65535/52700544213_27b5121d87_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (5, 'Role of Atlantis', 1, 'Teriyaki sauce, Spicy sauce, Chilled salmon, Tiger shrimp, Green onion, Tuna, Cucumber, Avocado, Rice, Nori', 320, 455, 'https://live.staticflickr.com/65535/52700467855_bbbe841ed3_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (6, 'Roll of Higata', 1, 'Salad Chuka, Spicy sauce, Chilled salmon, Chilli, Green onion, Tuna, Rice, Nori', 240, 325, 'https://live.staticflickr.com/65535/52700467690_169c472f29_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (7, 'Spicy roll with tuna', 1, 'Spicy sauce, Tuna, Cucumber, Philadelphia cheese, Rice, Nori', 265, 230, 'https://live.staticflickr.com/65535/52700467650_ecc45d3dfa_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (8, 'Gunkan with salmon', 2, 'Chilled salmon, Japanese mayonnaise, Caviar, Rice, Nori', 35, 55, 'https://live.staticflickr.com/65535/52700485510_e81e3cc0db_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (9, 'Gunkan with tuna', 2, 'Japanese mayonnaise, Tuna, Caviar, Rice, Nori', 35, 55, 'https://live.staticflickr.com/65535/52699548962_899c564ec5_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (10, 'Gunkan with eel', 2, 'Roasted eel, Japanese mayonnaise, Caviar, Rice, Nori', 35, 75, 'https://live.staticflickr.com/65535/52700065656_28cb330d1c_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (11, 'Gunkan with cocktail shrimp', 2, 'Shrimp cocktail, Japanese mayonnaise, Caviar, Rice, Nori', 35, 50, 'https://live.staticflickr.com/65535/52699549032_54a8fe7c57_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (12, 'Gunkan with red caviar', 2, 'Red caviar, Cucumber, Rice, Nori', 35, 130, 'https://live.staticflickr.com/65535/52700065646_90c450c729_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (13, 'Gunkan with scallop', 2, 'Scallop, Japanese mayonnaise, Caviar, Rice, Nori', 35, 65, 'https://live.staticflickr.com/65535/52700485550_a5579e3f1c_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (14, 'Salmon set', 3, 'Roll Philadelphia double cheese, Roll Philadelphia, Sushi cake with salmon, Gunkan salmon (6 pcs.)', 1030, 1150, 'https://live.staticflickr.com/65535/52700519615_8eb20e4695_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (15, 'Set for a big company', 3, 'Roll Philadelphia in sesame, Roll Philadelphia, Gunkan with shrimp cocktail (2 pcs.), Gunkan tuna (2 pcs.), Gunkan salmon (2 pcs.), Gunkan with eel (2 pcs.), Maki Roll with Cucumber, California roll with tuna in caviar, Roll in eel, Spicy roll with tuna, Roll with tiger shrimp', 2110, 2500, 'https://live.staticflickr.com/65535/52700362159_ff5a2aafc2_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (16, 'Set of baked rolls', 3, 'Baked roll with salmon, Baked roll with eel, Baked roll of red velvet', 940, 1250, 'https://live.staticflickr.com/65535/52700519565_e3b5dba5c6_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (17, 'Set ONE LOVE', 3, 'Gunkan with eel (2 pcs.), Maki roll with tuna, California roll with eel in sesame, Roll Philadelphia double cheese, Gunkan with shrimp cocktail (2 pcs.), Gunkan salmon (2 pcs.)', 880, 1270, 'https://live.staticflickr.com/65535/52700099461_ebd7f71c13_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (18, 'Solo set', 3, 'Gunkan tuna (2 pcs.), Gunkan with eel (2 pcs.), Nigiri with tiger shrimp (2pcs.), Roll Philadelphia double cheese', 510, 700, 'https://live.staticflickr.com/65535/52700519545_cac4138164_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (19, 'Sashimi with eel', 4, 'Unagi sauce, Cucumber, Seaweed Chuka, Sesame seed, Roasted eel', 200, 470, 'https://live.staticflickr.com/65535/52700113846_c266f1c1f7_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (20, 'Sashimi with salmon', 4, 'Chilled salmon, Cucumber, Seaweed Chuka', 200, 310, 'https://live.staticflickr.com/65535/52700533935_cc6d319082_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (21, 'Sashimi with tiger shrimp', 4, 'Tiger shrimp, Cucumber, Seaweed Chuka', 200, 350, 'https://live.staticflickr.com/65535/52700533875_772717b08a_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (22, 'Sashimi with tuna', 4, 'Tuna, Cucumber, Seaweed Chuka', 200, 310, 'https://live.staticflickr.com/65535/52700533860_78bcd8288a_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (23, 'Tartar fresh', 5, 'Cucumber, Avocado, Chilled salmon, Japanese mayonnaise, Green onion, Caviar', 190, 375, 'https://live.staticflickr.com/65535/52700623623_d7cc43051a_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (24, 'Tuna tartar', 5, 'Oyster sauce, Tuna, Caviar from marine algae Laminaria', 240, 425, 'https://live.staticflickr.com/65535/52699609982_2dec9b0464_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (25, 'Chuka salad', 5, 'Sesame seed, Peanut sauce, Seaweed Chuka', 150, 165, 'https://live.staticflickr.com/65535/52700127601_71563e3ccb_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (26, 'Salmon tartare', 5, 'Ground pepper, Salt, Chilled salmon, Olive oil, Lemon', 180, 405, 'https://live.staticflickr.com/65535/52700547665_7ae6644acb_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (27, 'Tartar mix', 5, 'Tuna, Oyster sauce, Avocado, Chilled salmon, Cherry tomatoes, Olive oil, Mustard french, Lemon, Salt, Honey', 200, 380, 'https://live.staticflickr.com/65535/52700547590_60332700fa_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (28, 'Roll Choco', 6, 'Pear, Philadelphia cheese, Pistachio, Peach, Banana, Cocoa pancake', 270, 360, 'https://live.staticflickr.com/65535/52699633962_786139d8d9_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (29, 'Roll Sweet mango', 6, 'An Apple, Philadelphia cheese, White pancake, Almond, Kiwi, Mango', 260, 320, 'https://live.staticflickr.com/65535/52700571850_07ec45e415_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (30, 'Roll Nutella', 6, 'Cashew, Philadelphia cheese, Nutella, Banana, Kiwi, Cocoa pancake, Mango', 280, 360, 'https://live.staticflickr.com/65535/52700152376_45d95fe906_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (31, 'Roll Raspberry Crash', 6, 'An Apple, Philadelphia cheese, Raspberries, White pancake, Pear, Mango', 260, 320, 'https://live.staticflickr.com/65535/52700152351_c8ca1fbd62_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (32, 'Futomaki tuna', 7, 'Fried onion, Poke sauce, Tuna, Caviar, Iceberg lettuce leaves, Cucumber, Avocado, Philadelphia cheese, Rice, Nori, *Scorched by a burner', 300, 340, 'https://live.staticflickr.com/65535/52699653917_ef28974687_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (33, 'Futomaki with salmon', 7, 'Fried onion, Poke sauce, Chilled salmon, Caviar, Iceberg lettuce leaves, Cucumber, Avocado, Philadelphia cheese, Rice, Nori, *Scorched by a burner', 300, 375, 'https://live.staticflickr.com/65535/52700591840_12e0074a70_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (34, 'Futomaki with scallop', 7, 'Chili sauce sharp shriracha, Scallop, Iceberg lettuce leaves, Cucumber, Avocado, Philadelphia cheese, Rice, Nori, *Scorched by a burner', 275, 365, 'https://live.staticflickr.com/65535/52700666868_0131c54b5a_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (35, 'Bowl with eel', 8, 'Philadelphia cheese, Poke sauce, Mango, Sesame seed, Cashew, Bell pepper, Unagi sauce, Eel, Edamame beans, Avocado, Key lime, Rice', 340, 425, 'https://live.staticflickr.com/65535/52700182856_46fc6fc1d4_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (36, 'Bowl with shrimp', 8, 'Philadelphia cheese, Poke sauce, Mango, Sesame seed, Cashew, Tiger shrimp, Bell pepper, Unagi sauce, Edamame beans, Avocado, Key lime, Rice', 340, 350, 'https://live.staticflickr.com/65535/52700443779_670f961932_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (37, 'Bowl with salmon', 8, 'Philadelphia cheese, Mango, Oyster sauce, Seaweed Chuka, Sesame seed, Cherry tomatoes, Cashew, Salmon, Key lime, Avocado, Poke sauce, Rice', 340, 340, 'https://live.staticflickr.com/65535/52700443694_d0ed872682_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (38, 'Bowl with tuna', 8, 'Philadelphia cheese, Mango, Oyster sauce, Seaweed Chuka, Sesame seed, Cherry tomatoes, Cashew, Tuna, Key lime, Avocado, Poke sauce, Rice', 340, 310, 'https://live.staticflickr.com/65535/52700182791_40dff00524_z.jpg');
+INSERT INTO products (product_id, product_name, category_id, composition, gram, price, photos) VALUES (39, 'Vegetable bowl', 8, 'Avocado, Key lime, Poke sauce, Mango, Seaweed Chuka, Sesame seed, Cherry tomatoes, Cashew, Bell pepper, Edamame beans, Rice', 330, 210, 'https://live.staticflickr.com/65535/52700602480_9552747604_z.jpg');
+
+-- Table: users
+CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL UNIQUE, message INTEGER, location TEXT REFERENCES languages (language_id));
+
+-- Trigger: update_translation_name
+CREATE TRIGGER IF NOT EXISTS update_translation_name AFTER UPDATE ON products FOR EACH ROW BEGIN UPDATE product_translations SET product_name = (SELECT product_name FROM products WHERE product_translations.product_id = products.product_id) WHERE product_translations.language_id = "en"; END;
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
